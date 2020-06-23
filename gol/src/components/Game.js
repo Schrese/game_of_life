@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import Rules from './game/Rules.jsx';
 import Grid from './game/Grid.js';
 
@@ -23,10 +25,24 @@ const Game = () => {
     return(
         <div className = 'main_container'>
             {/* Made it here */}
-            <Grid />
-            <Rules />
+            <GridContainer>
+                <Grid />
+            </GridContainer>
+            <RuleContainer>
+                <Rules />
+            </RuleContainer>
         </div>
     )
 }
 
 export default Game;
+
+const GridContainer = styled.div`
+    background: magenta;
+    width: 80%;
+`
+
+const RuleContainer = styled.div`
+    background: blue;
+    width: 20%
+`

@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
+import Cell from './Cell.js'
+
 // const grid = [
 //     {id: 1, row: 1, col: 1 },
 //     {id: 2, row: 1, col: 2 },
@@ -36,7 +38,7 @@ import styled from 'styled-components';
 
 // Cell Class
 // has properties: id, row, col, alive, 
-class Cell {
+class EachCell {
     constructor(id, row, col, isAlive) {
         this.id = id
         this.row = row
@@ -61,7 +63,7 @@ const Grid = () => {
 
             for (let j = n; j > 0; j--) {
                 gen_id += 1
-                newCell = new Cell(gen_id, i, j, false)
+                newCell = new EachCell(gen_id, i, j, false)
                 arr.push(newCell)
                 // console.log(arr)
                 // setGrid(grid, newCell)
@@ -72,7 +74,7 @@ const Grid = () => {
         return arr
     }
 
-    let generated = generateCells(5)
+    let generated = generateCells(25)
     console.log(generated, 'final product')
 
     return(
@@ -84,6 +86,9 @@ const Grid = () => {
                         <p className = 'ind_cell'>Box</p>{x.id}
                     </OneCell>
                 ))} */}
+                {generated.map(g => (
+                    <Cell key = {g.id} ind_cell = {g} />
+                ))}
 
             </GridContainer>
         </div>
@@ -96,23 +101,21 @@ const GridContainer = styled.div`
     // display: flex;
     // flex-wrap: wrap;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(25, 0fr);
+    justify-content: center;
+    // grid-column-gap: 0;
+    // grid-template-columns: repeat(25, minmax(0.2%, 1fr))
     padding: 10px;
 
-    .grid_container > div {
-        background: black;
-        padding: 1rem;
-    }
+    // .grid_container > div {
+    //     background: black;
+    //     // padding: 1rem;
+    // }
 
-    .grid_container > div::before {
-        content: "";
-        padding-bottom: 100%;
-        display: block;
-    }
+    // .grid_container > div::before {
+    //     content: "";
+    //     padding-bottom: 100%;
+    //     display: block;
+    // }
 `
 
-// const OneCell = styled.div`
-//     background: pink;
-//     // width: 5rem;
-//     height: 5rem;
-// `

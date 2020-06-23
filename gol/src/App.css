@@ -39,12 +39,12 @@
 
 .main_container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   /* background: green; */
 
 }
 
-.rules_container {
+/* .rules_container {
   width: 30%;
   background: green
 }
@@ -52,7 +52,7 @@
 .secondary_container {
   background: grey;
   width: 60%
-}
+} */
 
 /* .grid_container {
   grid-template-columns: 100px 50px 100px;
