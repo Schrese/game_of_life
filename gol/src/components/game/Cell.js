@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Cell = ({ ind_cell, setGrid }) => {
-    console.log(ind_cell, 'from cell.js')
+const Cell = ({ ind_cell, setGrid, lifeToggler }) => {
+    // console.log(ind_cell.id,'from cell.js')
     return(
-        <OneCell>
+        <OneCell onClick = {() => lifeToggler(ind_cell)} style={{background: ind_cell.isAlive == true ? 'blue' : 'pink' }} >
             
         </OneCell>
     )
@@ -13,7 +13,7 @@ const Cell = ({ ind_cell, setGrid }) => {
 export default Cell;
 
 const OneCell = styled.div`
-    background: pink;
+    // background: pink;
     width: 1rem;
     height: 1rem;
     cursor: pointer

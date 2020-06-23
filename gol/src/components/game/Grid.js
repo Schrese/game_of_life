@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Cell from './Cell.js'
@@ -45,50 +45,81 @@ class EachCell {
         this.col = col
         this.isAlive = isAlive
     }
+    // setIsAlive(isAlive) {
+    //     this.isAlive = true
+    //     console.log(this.isAlive)
+    // }
 }
 
 
 const Grid = () => {
     // const [currentGen, setCurrentGen] = useState([])
     // const [columns, setColumns] = useState(5)
-    // const [rows, setRows] = useState(5)
+    const [rows, setRows] = useState(25)
     const [grid, setGrid] = useState([])
+    // const [aliveToggler, setAliveToggler] = useState(false)
 
+    useEffect(() => {
     // function to create rows/columns/cells
-    function generateCells(n) {
-        let gen_id = 0
-        let newCell
-        let arr = []
-        for (let i = 1; i <= n; i++){
+        function generateCells(n) {
+            let gen_id = 0
+            let newCell
+            let arr = []
+            for (let i = 1; i <= n; i++){
 
-            for (let j = n; j > 0; j--) {
-                gen_id += 1
-                newCell = new EachCell(gen_id, i, j, false)
-                arr.push(newCell)
-                // console.log(arr)
-                // setGrid(grid, newCell)
-                // console.log(newCell)
-                // return grid
+                for (let j = n; j > 0; j--) {
+                    gen_id += 1
+                    newCell = new EachCell(gen_id, i, j, false)
+                    arr.push(newCell)
+                    // console.log(arr)
+                    // setGrid(grid, newCell)
+                    // console.log(newCell)
+                    // return grid
+                }
             }
+            return setGrid(arr)
         }
-        return arr
-    }
+        generateCells(rows)
+    }, [rows, setGrid])
 
-    let generated = generateCells(25)
-    console.log(generated, 'final product')
+    const something = grid[1]
+    console.log(grid[1])
+    const lifeToggler = (obj) => {
+        obj.isAlive = !obj.isAlive
+        setGrid([...grid, grid[obj.id-1]])
+        // console.log(grid)
+    }
+    console.log(grid)
+    // // function to create rows/columns/cells
+    // function generateCells(n) {
+    //     let gen_id = 0
+    //     let newCell
+    //     let arr = []
+    //     for (let i = 1; i <= n; i++){
+
+    //         for (let j = n; j > 0; j--) {
+    //             gen_id += 1
+    //             newCell = new EachCell(gen_id, i, j, false)
+    //             arr.push(newCell)
+    //             // console.log(arr)
+    //             // setGrid(grid, newCell)
+    //             // console.log(newCell)
+    //             // return grid
+    //         }
+    //     }
+    //     return arr
+    // }
+
+    // let generated = generateCells(25)
+    // console.log(generated, 'final product')
 
     return(
         <div className = 'secondary_container'>
             <h4>This Will be the Grid</h4>
                 <GridContainer className = 'grid_container'>
-                {/* {grid.map(x => (
-                    <OneCell className = 'cell_container' key = {x.id}>
-                        <p className = 'ind_cell'>Box</p>{x.id}
-                    </OneCell>
-                ))} */}
-                {generated.map(g => (
-                    <Cell key = {g.id} ind_cell = {g} />
-                ))}
+                    {grid ? grid.map(g => (
+                        <Cell key = {g.id} ind_cell = {g} lifeToggler = {lifeToggler}/>
+                    )) : null}
 
             </GridContainer>
         </div>
@@ -98,24 +129,9 @@ const Grid = () => {
 export default Grid;
 
 const GridContainer = styled.div`
-    // display: flex;
-    // flex-wrap: wrap;
     display: grid;
     grid-template-columns: repeat(25, 0fr);
     justify-content: center;
-    // grid-column-gap: 0;
-    // grid-template-columns: repeat(25, minmax(0.2%, 1fr))
     padding: 10px;
-
-    // .grid_container > div {
-    //     background: black;
-    //     // padding: 1rem;
-    // }
-
-    // .grid_container > div::before {
-    //     content: "";
-    //     padding-bottom: 100%;
-    //     display: block;
-    // }
 `
 
