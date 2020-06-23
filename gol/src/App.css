@@ -39,17 +39,33 @@
 
 .main_container {
   display: flex;
-  justify-content: space-evenly;
-  background: green;
+  justify-content: space-between;
+  /* background: green; */
 
-}
-
-.grid_container {
-  width: 59%;
-  border-right: 2px solid #282c34;
 }
 
 .rules_container {
   width: 30%;
+  background: green
 }
 
+.secondary_container {
+  background: grey;
+  width: 60%
+}
+
+/* .grid_container {
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 10px;
+  row-gap: 15px;
+  background: grey;
+  justify-content: stretch;
+}
+
+
+.cell_container {
+  color: blue;
+  width: 50px;
+  height: 50px;
+} */
