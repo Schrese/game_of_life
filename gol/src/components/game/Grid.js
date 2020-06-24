@@ -26,30 +26,51 @@ class EachCell {
 
 
 const Grid = () => {
-    const [rows, setRows] = useState(25)
+    const [rows, setRows] = useState(5)
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
     const [nextGrid, setNextGrid] = useState([])
+    const [generation, setGeneration] = useState(0)
+    const [currentGrid, setCurrentGrid] = useState([])
 
     useEffect(() => {
     // function to create rows/columns/cells
-        function generateCells(n) {
-            let gen_id = 0
-            let newCell
-            let arr = []
-            for (let i = 1; i <= n; i++){
-                for (let j = n; j > 0; j--) {
-                    gen_id += 1
-                    newCell = new EachCell(gen_id, i, j, false, rows)
-                    arr.push(newCell)
-                }
-            }
-            return setGrid(arr)
-        }
         generateCells(rows)
     }, [rows, setGrid])
 
+    function generateCells(n) {
+        let gen_id = 0
+        let newCell
+        let arr = []
+        for (let i = 1; i <= n; i++){
+            for (let j = 1; j <= n; j++) {
+                gen_id += 1
+                newCell = new EachCell(gen_id, i, j, false, rows)
+                arr.push(newCell)
+            }
+        }
+        return setGrid(arr)
+    }
 
+    function generateCurrentGrid(arr, row) {
+        console.log(arr.length)
+        let r = row * row 
+        let curCell 
+        let northCell
+        let northAttr
+        // console.log(r)
+        arr.forEach(c => {
+            // console.log(c.id)
+            curCell = arr[c.id - 1]
+            northCell = curCell.n
+            northAttr = arr[northCell]
+            console.log(curCell.id, northCell, northAttr)
+            // So the issue I'm running into right now is that I'm not taking the edges of the grid into account. It's still looking for cells outside of the bounds of the grid
+            // Turns out rows and columns are in reverse order as well
+        })
+    }
+    generateCurrentGrid(grid, rows);
+    console.log(grid)
     const lifeToggler = (obj) => {
         if (isPlaying === false) {
         obj.isAlive = !obj.isAlive
@@ -87,6 +108,11 @@ const Grid = () => {
                     )) : null}
                 </GridContainer>
                 <Inputs player = {player} />
+                <GridContainer className = 'grid_container'>
+                    {currentGrid ? grid.map((g, i) => (
+                        <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
+                    )) : null}
+                </GridContainer>
         </div>
     )
 }
@@ -95,7 +121,7 @@ export default Grid;
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(25, 0fr);
+    grid-template-columns: repeat(5, 0fr);
     justify-content: center;
     padding: 10px;
 `
