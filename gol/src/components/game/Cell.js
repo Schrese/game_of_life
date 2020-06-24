@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Cell = ({ ind_cell, index, setGrid, lifeToggler }) => {
-    // console.log(ind_cell.id,'from cell.js')
+    // console.log(ind_cell,'from cell.js')
     return(
         <OneCell onClick = {() => lifeToggler(ind_cell)} style={{background: ind_cell.isAlive == true ? 'blue' : 'pink' }} >
             

@@ -44,6 +44,10 @@
 
 }
 
+.secondary_container {
+  height: 90%;
+}
+
 /* .rules_container {
   width: 30%;
   background: green
