@@ -5,9 +5,10 @@ const Cell = ({ ind_cell, index, setGrid, lifeToggler }) => {
     // console.log(ind_cell,'from cell.js')
     return(
         <OneCell onClick = {() => lifeToggler(ind_cell)} style={{background: ind_cell.isAlive == true ? 'blue' : 'pink' }} >
-            <p>id: {ind_cell.id}</p>
+            {/* <p>id: {ind_cell.id}</p> */}
             <p>col: {ind_cell.col}</p>
             <p>row: {ind_cell.row}</p>
+            <p>test: {ind_cell.getRow()}</p>
         </OneCell>
     )
 }
