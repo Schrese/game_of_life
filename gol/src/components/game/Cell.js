@@ -8,7 +8,7 @@ const Cell = ({ ind_cell, index, setGrid, lifeToggler }) => {
             {/* <p>id: {ind_cell.id}</p> */}
             <p>col: {ind_cell.col}</p>
             <p>row: {ind_cell.row}</p>
-            <p>test: {ind_cell.getRow()}</p>
+            <p>test: {ind_cell.id}</p>
         </OneCell>
     )
 }

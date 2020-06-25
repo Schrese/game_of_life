@@ -156,8 +156,8 @@ const Grid = () => {
         // Then set the directions for the "inner" cells
         } else { // Inner Cells (not on "wall's")
             nw = cIndex - max - 2
-            n = cIndex - max
-            ne = cIndex - max + 1
+            n = cIndex - max - 1
+            ne = cIndex - max 
             e = cIndex + 1
             se = cIndex + max + 1
             s = cIndex + max
@@ -182,11 +182,12 @@ const Grid = () => {
             //     let closestEight = checkNeighbors(i, c.row, c.col, rows);
             //     console.log(i, closestEight, 'hope this works')
             // })    
-            let truthChecker = Object.values(c).some(v => v)   
+            let truthChecker = Object.values(c).some(v => v === true)   
             closestEight.forEach((eight, ind) => {
                 // console.log(arr[eight])
                 console.log(eight, c.id)
-
+                
+                
 
             })
             console.log(truthChecker)
