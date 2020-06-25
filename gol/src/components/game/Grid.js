@@ -54,6 +54,30 @@ const Grid = () => {
         return setGrid(arr)
     }
 
+    function generateRandomCells(n) {
+        setGeneration(0)
+        let gen_id = 0
+        let newCell
+        let arr = []
+        for (let i = 1; i <= n; i++){
+            for (let j = 1; j <= n; j++) {
+                let rand = Math.round(Math.random() * 1) 
+                if (rand === 0) {
+                    rand = false
+                } else {
+                    rand = true
+                }
+                gen_id += 1
+                console.log(rand)
+                newCell = new EachCell(gen_id, i, j, rand, rows)
+                arr.push(newCell)
+            }
+        }
+        return setGrid(arr)
+    }
+
+    console.log(grid)
+
     // So the issue I'm running into right now is that I'm not taking the edges of the grid into account. It's still looking for cells outside of the bounds of the grid
     // Turns out rows and columns are in reverse order as well
     // Issue I'll run into: looking up the index will be 1 less than the id
@@ -253,7 +277,7 @@ const Grid = () => {
                 </GridContainer>
                 <h4>Generation: {generation}</h4>
                 <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
-                <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} />
+                <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} />
                 {/* <GridContainer className = 'grid_container'>
                     {nextGrid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>

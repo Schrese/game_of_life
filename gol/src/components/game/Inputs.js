@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Inputs = ({ playToggle, clearer, rows }) => {
+const Inputs = ({ playToggle, clearer, rows, randomCells }) => {
 
     return(
         <div>
             <Button onClick = {() => playToggle()}>Play/Pause</Button>
             <Button onClick = {() => clearer(rows)}>Clear</Button>
+            <Button onClick = {() => randomCells(rows)}>Random</Button>
         </div>
     )
 }
