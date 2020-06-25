@@ -40,7 +40,7 @@ const Grid = () => {
     const [isPlaying, setIsPlaying] = useState(false)
     // const [nextGrid, setNextGrid] = useState([])
     // const [generation, setGeneration] = useState(0)
-    // const [currentGrid, setCurrentGrid] = useState([])
+    const [currentGrid, setCurrentGrid] = useState([])
 
     useEffect(() => {
     // function to create rows/columns/cells
@@ -189,21 +189,37 @@ const Grid = () => {
         // Loop through the array
         // console.log(arr, 'from the inside')
         arr.forEach((c, ind)=> {
-            let livingCount = 0
-            console.log(livingCount)
             let actual = checkNeighbors(ind, c.row, c.col, rows)
             console.log(c.id, ind, actual)
+            let livingCount = 0
             if(arr.length > 0) {
                 actual.forEach(a => {
                     let something = arr[a]
-                    console.log(c, something) // THIS SHOULD WORK ONCE I FIX THE GRID
+                    // console.log(c, something) // THIS SHOULD WORK ONCE I FIX THE GRID
                     let another = Object.values(something)
-                    console.log(another[3])
+                    // console.log(another[3])
                     if (another[3] === true) {
+                        console.log('hello')
                         livingCount += 1
                     }
                 })
-            }        
+                console.log(livingCount)
+                if (c.isAlive && (livingCount === 2 || livingCount === 3)) {
+                    console.log("Stayin' Alive!")
+                    return c
+                } else if (c.isAlive && (livingCount < 2 || livingCount > 3)) {
+                    console.log('dead!')
+                    return {...c, isAlive: !c.isAlive}
+                } else if (!c.isAlive && livingCount === 3) {
+                    console.log('I arise from the ashes')
+                    return {...c, isAlive: !c.isAlive}
+                } else {
+                    console.log("Unafected")
+                    return 
+                }
+            }  
+            
+
             })
 
         
@@ -247,7 +263,6 @@ const Grid = () => {
     const lifeToggler = (obj) => {
         if (isPlaying === false) {
         obj.isAlive = !obj.isAlive
-        let ind = obj.id
         setGrid([...grid])
         console.log(obj)
         }
@@ -257,16 +272,16 @@ const Grid = () => {
         setIsPlaying(!isPlaying)
     }
 
-    function testing(arr) {
-        let i = 0
-        for(i in arr){
-            let current = arr[i]
-            let next = arr[current.nw]
-            // console.log(i, next)
-        }
-    }
-    testing(grid)
-    // console.log(isPlaying)
+    // function testing(arr) {
+    //     let i = 0
+    //     for(i in arr){
+    //         let current = arr[i]
+    //         // let next = arr[current.nw]
+    //         // console.log(i, next)
+    //     }
+    // }
+    // testing(grid)
+    // // console.log(isPlaying)
 
     return(
         <div className = 'secondary_container'>
@@ -277,11 +292,11 @@ const Grid = () => {
                     )) : null}
                 </GridContainer>
                 <Inputs player = {player} />
-                {/* <GridContainer className = 'grid_container'>
+                <GridContainer className = 'grid_container'>
                     {currentGrid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
-                </GridContainer> */}
+                </GridContainer>
         </div>
     )
 }
