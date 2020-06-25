@@ -38,9 +38,9 @@ const Grid = () => {
     const [rows, setRows] = useState(5)
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
-    const [nextGrid, setNextGrid] = useState([])
-    const [generation, setGeneration] = useState(0)
-    const [currentGrid, setCurrentGrid] = useState([])
+    // const [nextGrid, setNextGrid] = useState([])
+    // const [generation, setGeneration] = useState(0)
+    // const [currentGrid, setCurrentGrid] = useState([])
 
     useEffect(() => {
     // function to create rows/columns/cells
@@ -84,7 +84,7 @@ const Grid = () => {
         if (r === 1 && c === 1) { // Top Left
             nw = (max * max) - 1
             n = max * (max - 1) 
-            ne = (max * max - 1) + 1
+            ne = n + 1
             e = cIndex + 1
             se = cIndex + max + 1
             s = cIndex + max
@@ -109,7 +109,7 @@ const Grid = () => {
             sw = cIndex + max - 1
             w = cIndex - 1
         } else if (r === max && c === max) { // Bottom Right
-            nw = cIndex - max - 2
+            nw = cIndex - max - 1
             n = cIndex - max
             ne = (max * (max - 1)) - max
             e = max * (max - 1)
@@ -147,7 +147,7 @@ const Grid = () => {
         } else if (c === max) { // Right Wall
             nw = cIndex - max - 2
             n = cIndex - max
-            ne = (cIndex * 2) + 1
+            ne = n + 1
             e = cIndex - max + 1
             se = cIndex + 1
             s = cIndex + max
@@ -155,49 +155,73 @@ const Grid = () => {
             w = cIndex - 1
         // Then set the directions for the "inner" cells
         } else { // Inner Cells (not on "wall's")
-            nw = cIndex - max - 2
-            n = cIndex - max - 1
-            ne = cIndex - max 
-            e = cIndex + 1
-            se = cIndex + max + 1
+            n = cIndex - max
             s = cIndex + max
-            sw = cIndex + max - 1
+            e = cIndex + 1
             w = cIndex - 1
+            nw = n - 1
+            ne = n + 1
+            se = s + 1
+            sw = s - 1
         }
     // return an array of the 8 directions
     return [nw, n, ne, e, se, s, sw, w]
     }    
 
+    function getIndCell(arr, index) {
+        // let output
+        if (arr) {
+            let accessing = arr[index]
+            // console.log(accessing)
+            let output = Object.values(accessing)
+            // final = output.some(v => v === true)
+            // console.log(output, 'from aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+            return output
+        }
+    }
+    if(grid.length !== 0) {
+        getIndCell(grid, 1)
+    } 
+
     function generateGrid2(arr) {
         // Takes in an array 
-        let livingCount = 0
-        // console.log(livingCount)
-        // Loop through the array
-        arr.forEach((c, i)=> {
-            // console.log(c.id, i, c.row, c.isAlive)
-            let closestEight = checkNeighbors(c.id, c.row, c.col, rows);
-            console.log(closestEight, 'hope this works')
-            // Object.entries(c).forEach(([isAlive, value]) => {
-            //     console.log(isAlive, value)
-            //     let closestEight = checkNeighbors(i, c.row, c.col, rows);
-            //     console.log(i, closestEight, 'hope this works')
-            // })    
-            let truthChecker = Object.values(c).some(v => v === true)   
-            closestEight.forEach((eight, ind) => {
-                // console.log(arr[eight])
-                console.log(eight, c.id)
-                
-                
 
+        // Loop through the array
+        // console.log(arr, 'from the inside')
+        arr.forEach((c, ind)=> {
+            let livingCount = 0
+            console.log(livingCount)
+            let actual = checkNeighbors(ind, c.row, c.col, rows)
+            console.log(c.id, ind, actual)
+            if(arr.length > 0) {
+                actual.forEach(a => {
+                    let something = arr[a]
+                    console.log(c, something) // THIS SHOULD WORK ONCE I FIX THE GRID
+                    let another = Object.values(something)
+                    console.log(another[3])
+                    if (another[3] === true) {
+                        livingCount += 1
+                    }
+                })
+            }        
             })
-            console.log(truthChecker)
-        })
+
+        
+
+        // }
         // Each element is run through the checkNeighbors function
         // then those neigbbors are looped through to see if they are alive or dead
     }
-    generateGrid2(grid)
 
+    if (grid.length !== 0) {
+        generateGrid2(grid)
+    }
 
+    
+    // let accessing = grid[1]
+    // console.log(accessing)
+    // let a = Object.entries(accessing)
+    // console.log(a)
 
 
 
