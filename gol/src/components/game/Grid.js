@@ -13,14 +13,6 @@ class EachCell {
         this.col = col
         this.isAlive = isAlive
         this.max = max
-        // this.nw = id - max - 1
-        // this.n = id - max
-        // this.ne = id - max + 1
-        // this.e = id + 1
-        // this.se = id + max + 1
-        // this.s = id + max
-        // this.sw = id + max - 1
-        // this.w = id - 1
     }
     test() {
         return this.id
@@ -168,21 +160,6 @@ const Grid = () => {
     return [nw, n, ne, e, se, s, sw, w]
     }    
 
-    // function getIndCell(arr, index) {
-    //     // let output
-    //     if (arr) {
-    //         let accessing = arr[index]
-    //         // console.log(accessing)
-    //         let output = Object.values(accessing)
-    //         // final = output.some(v => v === true)
-    //         // console.log(output, 'from aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-    //         return output
-    //     }
-    // }
-    // if(grid.length !== 0) {
-    //     getIndCell(grid, 1)
-    // } 
-
     function generateGrid2(arr) {
         // Takes in an array 
         let newArr = []
@@ -229,44 +206,10 @@ const Grid = () => {
         return setNextGrid(newArr)
     }
 
-    // const handleClick = (arr) => {
-    //     let newest = arr.map(generateGrid2(arr)) 
-    //     console.log(newest)
-    //     return newest
-    // }
 
     console.log('next grid', nextGrid)
 
-    // if (grid.length !== 0) {
-    //     generateGrid2(grid)
-    // }
 
-    
-    // let accessing = grid[1]
-    // console.log(accessing)
-    // let a = Object.entries(accessing)
-    // console.log(a)
-
-
-
-
-    // function generateCurrentGrid(arr, row) {
-    //     console.log(arr.length)
-    //     let r = row * row 
-    //     let curCell 
-    //     let northCell
-    //     let northAttr
-    //     // console.log(r)
-    //     arr.forEach(c => {
-    //         // console.log(c.id)
-    //         curCell = arr[c.id - 1]
-    //         northCell = curCell.n
-    //         northAttr = arr[northCell]
-    //         console.log(curCell.id, northCell, northAttr)
-
-    //     })
-    // }
-    // generateCurrentGrid(grid, rows);
     console.log('starting grid', grid)
     const lifeToggler = (obj) => {
         if (isPlaying === false) {
@@ -279,17 +222,6 @@ const Grid = () => {
     const player = e => {
         setIsPlaying(!isPlaying)
     }
-
-    // function testing(arr) {
-    //     let i = 0
-    //     for(i in arr){
-    //         let current = arr[i]
-    //         // let next = arr[current.nw]
-    //         // console.log(i, next)
-    //     }
-    // }
-    // testing(grid)
-    // // console.log(isPlaying)
 
     return(
         <div className = 'secondary_container'>
