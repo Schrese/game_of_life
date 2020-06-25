@@ -30,9 +30,9 @@ const Grid = () => {
     const [rows, setRows] = useState(25)
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
-    const [nextGrid, setNextGrid] = useState([])
-    // const [generation, setGeneration] = useState(0)
-    const [currentGrid, setCurrentGrid] = useState([])
+    // const [nextGrid, setNextGrid] = useState([])
+    const [generation, setGeneration] = useState(0)
+    // const [currentGrid, setCurrentGrid] = useState([])
 
     useEffect(() => {
     // function to create rows/columns/cells
@@ -40,6 +40,7 @@ const Grid = () => {
     }, [rows, setGrid])
 
     function generateCells(n) {
+        setGeneration(0)
         let gen_id = 0
         let newCell
         let arr = []
@@ -160,6 +161,24 @@ const Grid = () => {
     return [nw, n, ne, e, se, s, sw, w]
     }    
 
+    // function playTheGame(arr) {
+    //     if (isPlaying) {
+    //         setTimeout(() => {
+    //             generateGrid2(arr)
+    //         }, 3000)
+    //     }
+    // }
+
+    useEffect(() => {
+        if (isPlaying) {
+            setTimeout(() => {
+                setGeneration(generation + 1)
+                generateGrid2(grid)
+            }, 1000)
+        }
+    })
+
+
     function generateGrid2(arr) {
         // Takes in an array 
         let newArr = []
@@ -203,19 +222,20 @@ const Grid = () => {
             // console.log(updatedCell, 'omg maybe??????')
             newArr.push(updatedCell)
         }
+        // setGeneration(generation+1)
         return setGrid(newArr)
     }
 
 
-    console.log('next grid', nextGrid)
+    // console.log('next grid', nextGrid)
 
 
-    console.log('starting grid', grid)
+    // console.log('starting grid', grid)
     const lifeToggler = (obj) => {
         if (isPlaying === false) {
         obj.isAlive = !obj.isAlive
         setGrid([...grid])
-        console.log(obj)
+        // console.log(obj)
         }
     }
 
@@ -231,6 +251,7 @@ const Grid = () => {
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
                 </GridContainer>
+                <h4>Generation: {generation}</h4>
                 <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
                 <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} />
                 {/* <GridContainer className = 'grid_container'>
