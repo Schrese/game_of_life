@@ -203,7 +203,7 @@ const Grid = () => {
             // console.log(updatedCell, 'omg maybe??????')
             newArr.push(updatedCell)
         }
-        return setNextGrid(newArr)
+        return setGrid(newArr)
     }
 
 
@@ -233,11 +233,11 @@ const Grid = () => {
                 </GridContainer>
                 <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
                 <Inputs player = {player} />
-                {/* <GridContainer className = 'grid_container'>
+                <GridContainer className = 'grid_container'>
                     {nextGrid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
-                </GridContainer> */}
+                </GridContainer>
         </div>
     )
 }
