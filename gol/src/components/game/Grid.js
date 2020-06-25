@@ -27,7 +27,7 @@ class EachCell {
 
 
 const Grid = () => {
-    const [rows, setRows] = useState(5)
+    const [rows, setRows] = useState(25)
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
     const [nextGrid, setNextGrid] = useState([])
@@ -219,7 +219,7 @@ const Grid = () => {
         }
     }
 
-    const player = e => {
+    const playToggle = e => {
         setIsPlaying(!isPlaying)
     }
 
@@ -232,12 +232,12 @@ const Grid = () => {
                     )) : null}
                 </GridContainer>
                 <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
-                <Inputs player = {player} />
-                <GridContainer className = 'grid_container'>
+                <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} />
+                {/* <GridContainer className = 'grid_container'>
                     {nextGrid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
-                </GridContainer>
+                </GridContainer> */}
         </div>
     )
 }
@@ -246,7 +246,7 @@ export default Grid;
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(5, 0fr);
+    grid-template-columns: repeat(25, 0fr);
     justify-content: center;
     padding: 10px;
 `

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Inputs = ({ player }) => {
+const Inputs = ({ playToggle, clearer, rows }) => {
 
     return(
         <div>
-            <Button onClick = {() => player()}>Play/Pause</Button>
+            <Button onClick = {() => playToggle()}>Play/Pause</Button>
+            <Button onClick = {() => clearer(rows)}>Clear</Button>
         </div>
     )
 }
