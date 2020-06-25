@@ -12,7 +12,7 @@ class EachCell {
         this.row = row
         this.col = col
         this.isAlive = isAlive
-        // this.max = max
+        this.max = max
         // this.nw = id - max - 1
         // this.n = id - max
         // this.ne = id - max + 1
@@ -142,7 +142,7 @@ const Grid = () => {
             e = cIndex + 1
             se = cIndex + max + 1
             s = cIndex + max
-            sw = cIndex + max
+            sw = (max * 2) + cIndex - 1
             w = cIndex + max - 1
         } else if (c === max) { // Right Wall
             nw = cIndex - max - 2
