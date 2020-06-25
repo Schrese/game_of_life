@@ -171,14 +171,25 @@ const Grid = () => {
     function generateGrid2(arr) {
         // Takes in an array 
         let livingCount = 0
-        console.log(livingCount)
+        // console.log(livingCount)
         // Loop through the array
         arr.forEach((c, i)=> {
-            console.log(c.id, i, c.row, c.isAlive)
-            let closestEight = checkNeighbors(i, c.row, c.col, rows);
+            // console.log(c.id, i, c.row, c.isAlive)
+            let closestEight = checkNeighbors(c.id, c.row, c.col, rows);
             console.log(closestEight, 'hope this works')
-            console.log(arr[closestEight[0]])
+            // Object.entries(c).forEach(([isAlive, value]) => {
+            //     console.log(isAlive, value)
+            //     let closestEight = checkNeighbors(i, c.row, c.col, rows);
+            //     console.log(i, closestEight, 'hope this works')
+            // })    
+            let truthChecker = Object.values(c).some(v => v)   
+            closestEight.forEach((eight, ind) => {
+                // console.log(arr[eight])
+                console.log(eight, c.id)
 
+
+            })
+            console.log(truthChecker)
         })
         // Each element is run through the checkNeighbors function
         // then those neigbbors are looped through to see if they are alive or dead
@@ -241,11 +252,11 @@ const Grid = () => {
                     )) : null}
                 </GridContainer>
                 <Inputs player = {player} />
-                <GridContainer className = 'grid_container'>
+                {/* <GridContainer className = 'grid_container'>
                     {currentGrid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
-                </GridContainer>
+                </GridContainer> */}
         </div>
     )
 }
