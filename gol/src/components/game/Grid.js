@@ -38,7 +38,7 @@ const Grid = () => {
     const [rows, setRows] = useState(5)
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
-    // const [nextGrid, setNextGrid] = useState([])
+    const [nextGrid, setNextGrid] = useState([])
     // const [generation, setGeneration] = useState(0)
     const [currentGrid, setCurrentGrid] = useState([])
 
@@ -168,29 +168,29 @@ const Grid = () => {
     return [nw, n, ne, e, se, s, sw, w]
     }    
 
-    function getIndCell(arr, index) {
-        // let output
-        if (arr) {
-            let accessing = arr[index]
-            // console.log(accessing)
-            let output = Object.values(accessing)
-            // final = output.some(v => v === true)
-            // console.log(output, 'from aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-            return output
-        }
-    }
-    if(grid.length !== 0) {
-        getIndCell(grid, 1)
-    } 
+    // function getIndCell(arr, index) {
+    //     // let output
+    //     if (arr) {
+    //         let accessing = arr[index]
+    //         // console.log(accessing)
+    //         let output = Object.values(accessing)
+    //         // final = output.some(v => v === true)
+    //         // console.log(output, 'from aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    //         return output
+    //     }
+    // }
+    // if(grid.length !== 0) {
+    //     getIndCell(grid, 1)
+    // } 
 
     function generateGrid2(arr) {
         // Takes in an array 
-
+        let newArr = []
         // Loop through the array
         // console.log(arr, 'from the inside')
-        arr.forEach((c, ind)=> {
+        let nextArr = arr.map((c, ind)=> {
             let actual = checkNeighbors(ind, c.row, c.col, rows)
-            console.log(c.id, ind, actual)
+            // console.log(c.id, ind, actual)
             let livingCount = 0
             if(arr.length > 0) {
                 actual.forEach(a => {
@@ -199,39 +199,47 @@ const Grid = () => {
                     let another = Object.values(something)
                     // console.log(another[3])
                     if (another[3] === true) {
-                        console.log('hello')
+                        // console.log('hello')
                         livingCount += 1
                     }
                 })
-                console.log(livingCount)
+                // console.log(livingCount)
                 if (c.isAlive && (livingCount === 2 || livingCount === 3)) {
-                    console.log("Stayin' Alive!")
-                    return c
+                    // console.log("Stayin' Alive!")
+                    return {...c}
                 } else if (c.isAlive && (livingCount < 2 || livingCount > 3)) {
-                    console.log('dead!')
+                    // console.log('dead!')
                     return {...c, isAlive: !c.isAlive}
                 } else if (!c.isAlive && livingCount === 3) {
-                    console.log('I arise from the ashes')
+                    // console.log('I arise from the ashes')
                     return {...c, isAlive: !c.isAlive}
                 } else {
-                    console.log("Unafected")
-                    return 
+                    // console.log("Unafected")
+                    return {...c}
                 }
-            }  
-            
-
-            })
-
-        
-
-        // }
-        // Each element is run through the checkNeighbors function
-        // then those neigbbors are looped through to see if they are alive or dead
+            } 
+        })
+        // console.log(nextArr)
+        for (let i = 0; i < nextArr.length; i++) {
+            // console.log(nextArr[i].id)
+            let updatedCell = new EachCell(nextArr[i].id, nextArr[i].row, nextArr[i].col, nextArr[i].isAlive, rows)
+            // console.log(updatedCell, 'omg maybe??????')
+            newArr.push(updatedCell)
+        }
+        return setNextGrid(newArr)
     }
 
-    if (grid.length !== 0) {
-        generateGrid2(grid)
-    }
+    // const handleClick = (arr) => {
+    //     let newest = arr.map(generateGrid2(arr)) 
+    //     console.log(newest)
+    //     return newest
+    // }
+
+    console.log('next grid', nextGrid)
+
+    // if (grid.length !== 0) {
+    //     generateGrid2(grid)
+    // }
 
     
     // let accessing = grid[1]
@@ -259,7 +267,7 @@ const Grid = () => {
     //     })
     // }
     // generateCurrentGrid(grid, rows);
-    console.log(grid)
+    console.log('starting grid', grid)
     const lifeToggler = (obj) => {
         if (isPlaying === false) {
         obj.isAlive = !obj.isAlive
@@ -291,12 +299,13 @@ const Grid = () => {
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
                 </GridContainer>
+                <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
                 <Inputs player = {player} />
-                <GridContainer className = 'grid_container'>
-                    {currentGrid ? grid.map((g, i) => (
+                {/* <GridContainer className = 'grid_container'>
+                    {nextGrid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
-                </GridContainer>
+                </GridContainer> */}
         </div>
     )
 }
