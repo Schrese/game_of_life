@@ -330,6 +330,6 @@ const GridContainer = styled.div`
     padding: 10px;
     height: 80%;
     width: 100%;
-    background: blue;
+    background: #5F4B8BFF;
 `
 
