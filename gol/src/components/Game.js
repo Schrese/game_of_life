@@ -40,6 +40,7 @@ export default Game;
 const GridContainer = styled.div`
     background: magenta;
     width: 80%;
+    height: 1500px;
 `
 
 const RuleContainer = styled.div`

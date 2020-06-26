@@ -58,12 +58,13 @@
   width: 60%
 } */
 
-.grid_container {
+/* .grid_container {
   display: grid;
-  /* grid-template-columns: repeat(25, 1fr); */
+  grid-template-columns: repeat(25, 1fr);
   justify-content: center;
   padding: 10px;
-}
+  object-fit: cover;
+} */
 
 
 /* .cell_container {

@@ -32,6 +32,8 @@ const Grid = () => {
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
     const [generation, setGeneration] = useState(0)
+    const [cellShape, setCellShape] = useState(true);
+    // const [cellText, setCellText] = useState('Circle')
 
     useEffect(() => {
     // function to create rows/columns/cells
@@ -266,22 +268,36 @@ const Grid = () => {
         setIsPlaying(!isPlaying)
     }
 
+    const cellShapeToggle = e => {
+        setCellShape(!cellShape)
+    }
+
 
     const changeRows = e => {
         setRows(Number(e.target.value))
     }
-    console.log(rows)
     return(
         <div className = 'secondary_container'>
-            <h4>This Will be the Grid</h4>
-                    <h4>Generation: {generation}</h4>
-                    <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
-                    <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} />
-                <div className = 'grid_container' style = {{gridTemplateColumns: `repeat(${rows}, 20px)` }}>
+                    {/* <h4>Generation: {generation}</h4> */}
+            <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
+            <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} />
+                <GridContainer className = 'grid_container' 
+                style = 
+                    {{gridTemplateColumns: 
+                        rows === 25 ? `repeat(${rows}, ${30}px)` : 
+                        rows === 30 ? `repeat(${rows}, ${27}px)` : 
+                        rows === 40 ? `repeat(${rows}, ${23}px)` : 
+                        `repeat(${rows}, ${21}px)`, 
+                        gridTemplateRows: 
+                        rows === 25 ? `repeat(${rows}, ${30}px)` : 
+                        rows === 30 ? `repeat(${rows}, ${27}px)` : 
+                        rows === 40 ? `repeat(${rows}, ${23}px)` : 
+                        `repeat(${rows}, ${21}px)`
+                        }} >
                     {grid ? grid.map((g, i) => (
-                        <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
+                        <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler} cellShape = {cellShape} rows = {rows} />
                     )) : null}
-                </div>
+                </GridContainer>
         </div>
     )
 }
@@ -290,8 +306,10 @@ export default Grid;
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(25, 0fr);
     justify-content: center;
     padding: 10px;
+    height: 80%;
+    width: 100%;
+    background: blue;
 `
 
