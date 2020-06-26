@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Cell from './Cell.js';
 import Inputs from './Inputs.js';
+import Rules from './Rules.jsx';
 import { koksGalaxy, pentadecathlon, simpleGlider, shortLine, longLine } from './helpers.js';
 
 // Cell Class
@@ -123,18 +124,18 @@ const Grid = () => {
             sw = (max * 2) - 1
             w = max - 1
         } else if (r === max && c === 1) { // Bottom Left
-            nw = (max * max - 1) - 1
+            nw = cIndex - 1
             n = cIndex - max
-            ne = cIndex - max + 1
+            ne = n + 1
             e = cIndex + 1
             se = 1
             s = 0
             sw = max - 1
             w = (max * max) - 1
         } else if (r === 1 && c === max) { // Top Right
-            nw = (max * max) - 2
+            nw = (max * max - 1) - 1
             n = (max * max) - 1 
-            ne = max * 2
+            ne = max *(max - 1) 
             e = 0
             se = max
             s = cIndex + max
@@ -159,11 +160,11 @@ const Grid = () => {
             sw = cIndex + max - 1
             w = cIndex - 1
         } else if (r === max) { // Bottom Wall
-            nw = cIndex - max - 2
             n = cIndex - max
-            ne = cIndex - max + 1
+            nw = n - 1
+            ne = n + 1
             e = cIndex + 1
-            s = cIndex - (max * (max - 1))
+            s = cIndex - max * (max - 1)
             sw = s - 1
             se = s + 1
             w = cIndex - 1
@@ -177,9 +178,9 @@ const Grid = () => {
             sw = (max * 2) + cIndex - 1
             w = cIndex + max - 1
         } else if (c === max) { // Right Wall
-            nw = cIndex - max - 2
             n = cIndex - max
-            ne = n + 1
+            nw = n - 1
+            ne = cIndex - max * 2 + 1
             e = cIndex - max + 1
             se = cIndex + 1
             s = cIndex + max
@@ -300,24 +301,33 @@ const Grid = () => {
             <button onClick = {() => generatePreset(simpleGlider)}>Simple Glider</button>
             <button onClick = {() => generatePreset(shortLine)} >Short Line</button>
             <button onClick = {() => generatePreset(longLine)}>Long Line</button> */}
+            <div>
+
             <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
+            </div>
+            <div>
+
                 <GridContainer className = 'grid_container' 
                 style = 
-                    {{gridTemplateColumns: 
-                        rows === 25 ? `repeat(${rows}, ${30}px)` : 
-                        rows === 30 ? `repeat(${rows}, ${27}px)` : 
-                        rows === 40 ? `repeat(${rows}, ${23}px)` : 
-                        `repeat(${rows}, ${21}px)`, 
-                        gridTemplateRows: 
-                        rows === 25 ? `repeat(${rows}, ${30}px)` : 
-                        rows === 30 ? `repeat(${rows}, ${27}px)` : 
-                        rows === 40 ? `repeat(${rows}, ${23}px)` : 
-                        `repeat(${rows}, ${21}px)`
-                        }} >
+                {{gridTemplateColumns: 
+                    rows === 25 ? `repeat(${rows}, ${30}px)` : 
+                    rows === 30 ? `repeat(${rows}, ${27}px)` : 
+                    rows === 40 ? `repeat(${rows}, ${23}px)` : 
+                    `repeat(${rows}, ${21}px)`, 
+                    gridTemplateRows: 
+                    rows === 25 ? `repeat(${rows}, ${30}px)` : 
+                    rows === 30 ? `repeat(${rows}, ${27}px)` : 
+                    rows === 40 ? `repeat(${rows}, ${23}px)` : 
+                    `repeat(${rows}, ${21}px)`
+                }} >
                     {grid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler} cellShape = {cellShape} rows = {rows} />
-                    )) : null}
+                        )) : null}
                 </GridContainer>
+                </div>
+                <div>
+                <Rules />
+                </div>
         </div>
     )
 }

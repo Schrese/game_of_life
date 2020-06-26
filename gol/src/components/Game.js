@@ -28,9 +28,9 @@ const Game = () => {
             <GridContainer>
                 <Grid />
             </GridContainer>
-            <RuleContainer>
+            {/* <RuleContainer>
                 <Rules />
-            </RuleContainer>
+            </RuleContainer> */}
         </div>
     )
 }
@@ -39,7 +39,7 @@ export default Game;
 
 const GridContainer = styled.div`
     // background: magenta;
-    width: 80%;
+    width: 100%;
     height: 1400px;
 `
 
