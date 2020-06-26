@@ -4,15 +4,15 @@ import styled from 'styled-components';
 const Inputs = ({ playToggle, clearer, rows, randomCells, changeRows, generation, cellShapeToggle, grid, koksGalaxy, pentadecathlon, simpleGlider, shortLine, longLine, generatePreset, generateGrid2 }) => {
 
     return(
-        <div>
-            <div>
+        <div className = 'input_container'>
+            {/* <div> */}
                 <Button onClick = {() => generatePreset(koksGalaxy)}>Kok's Galaxy</Button>
                 <Button onClick = {() => generatePreset(pentadecathlon)}>pentadecathlon</Button>
                 <Button onClick = {() => generatePreset(simpleGlider)}>Simple Glider</Button>
                 <Button onClick = {() => generatePreset(shortLine)} >Short Line</Button>
                 <Button onClick = {() => generatePreset(longLine)}>Long Line</Button>
-            </div>
-            <div>
+            {/* </div> */}
+            {/* <div> */}
                 <Button onClick = {() => playToggle()}>Play/Pause</Button>
                 <Button onClick = {() => clearer(rows)}>Clear</Button>
                 <Button onClick = {() => randomCells(rows)}>Random</Button>
@@ -27,7 +27,7 @@ const Inputs = ({ playToggle, clearer, rows, randomCells, changeRows, generation
                     </Select>
                 </form>
                 <Button onClick = {() => generateGrid2(grid)}>Next Gen</Button>
-            </div>
+            {/* </div> */}
             <h2>Generation: {generation} </h2>
         </div>
     )
@@ -38,7 +38,7 @@ export default Inputs;
 const Button = styled.button`
     width: 14rem;
     height:3rem;
-    margin: 0.5% 1%;
+    margin: 6% 1%;
     border: 4px solid #8ABA91;
     border-radius: 15px;
     background: #BAA28A;

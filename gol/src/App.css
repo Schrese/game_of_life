@@ -46,22 +46,30 @@
 }
 
 .secondary_container {
-  height: 90%;
   display: flex;
-  
-}
-
-.rules_container {
-  padding-top: 30%
-  /* background: #5F4B8BFF; */
+  justify-content: space-evenly;
+  height: 90%;
+  /* background: red; */
+  margin: 0 auto;
+  padding-top: 5%;
 }
 
 /* .rules_container {
-  width: 30%;
-  background: green
+  padding-top: 30%
+} */
+
+.input_container {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10%;
 }
 
-.secondary_container {
+.rules_container {
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+/* .secondary_container {
   background: grey;
   width: 60%
 } */
