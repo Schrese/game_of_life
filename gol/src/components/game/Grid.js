@@ -25,14 +25,13 @@ class EachCell {
     }
 }
 
+const initRows = {r: '25'}
 
 const Grid = () => {
-    const [rows, setRows] = useState(25)
+    const [rows, setRows] = useState(Number(initRows.r))
     const [grid, setGrid] = useState([])
     const [isPlaying, setIsPlaying] = useState(false)
-    // const [nextGrid, setNextGrid] = useState([])
     const [generation, setGeneration] = useState(0)
-    // const [currentGrid, setCurrentGrid] = useState([])
 
     useEffect(() => {
     // function to create rows/columns/cells
@@ -267,22 +266,22 @@ const Grid = () => {
         setIsPlaying(!isPlaying)
     }
 
+
+    const changeRows = e => {
+        setRows(Number(e.target.value))
+    }
+    console.log(rows)
     return(
         <div className = 'secondary_container'>
             <h4>This Will be the Grid</h4>
-                <GridContainer className = 'grid_container'>
+                    <h4>Generation: {generation}</h4>
+                    <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
+                    <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} />
+                <div className = 'grid_container' style = {{gridTemplateColumns: `repeat(${rows}, 20px)` }}>
                     {grid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
                     )) : null}
-                </GridContainer>
-                <h4>Generation: {generation}</h4>
-                <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
-                <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} />
-                {/* <GridContainer className = 'grid_container'>
-                    {nextGrid ? grid.map((g, i) => (
-                        <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler}/>
-                    )) : null}
-                </GridContainer> */}
+                </div>
         </div>
     )
 }
