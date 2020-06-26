@@ -294,13 +294,13 @@ const Grid = () => {
     return(
         <div className = 'secondary_container'>
                     {/* <h4>Generation: {generation}</h4> */}
-            <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
+            {/* <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
             <button onClick = {() => generatePreset(koksGalaxy)}>Kok's Galaxy</button>
             <button onClick = {() => generatePreset(pentadecathlon)}>pentadecathlon</button>
             <button onClick = {() => generatePreset(simpleGlider)}>Simple Glider</button>
             <button onClick = {() => generatePreset(shortLine)} >Short Line</button>
-            <button onClick = {() => generatePreset(longLine)}>Long Line</button>
-            <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} />
+            <button onClick = {() => generatePreset(longLine)}>Long Line</button> */}
+            <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
                 <GridContainer className = 'grid_container' 
                 style = 
                     {{gridTemplateColumns: 
@@ -330,6 +330,6 @@ const GridContainer = styled.div`
     padding: 10px;
     height: 80%;
     width: 100%;
-    background: blue;
+    // background: #5F4B8BFF;
 `
 

@@ -38,12 +38,12 @@ const Game = () => {
 export default Game;
 
 const GridContainer = styled.div`
-    background: magenta;
+    // background: magenta;
     width: 80%;
-    height: 1500px;
+    height: 1400px;
 `
 
 const RuleContainer = styled.div`
-    background: blue;
-    width: 20%
+    // background: blue;
+    width: 19%
 `

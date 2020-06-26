@@ -35,5 +35,8 @@ const OneCell = styled.div`
     // width: 1rem;
     // height: 1rem;
     cursor: pointer;
+    border: 1px solid #38473A;
     // border-radius: 50px;
+    box-shadow: 5px 10px #1B2C8F;
+
 `
