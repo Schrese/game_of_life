@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Cell from './Cell.js';
 import Inputs from './Inputs.js';
+import { koksGalaxy, pentadecathlon, simpleGlider, shortLine, longLine } from './helpers.js';
 
 // Cell Class
 // has properties: id, row, col, alive, 
@@ -55,6 +56,19 @@ const Grid = () => {
         return setGrid(arr)
     }
 
+    function generatePreset(arr) {
+        let newArr = []
+        let newCell
+        arr.forEach(a => {
+            console.log(a)
+            newCell = new EachCell(a.id, a.row, a.col, a.isAlive, a.rows)
+            newArr.push(newCell)
+            console.log(newArr)
+            return setGrid(newArr) 
+    })}
+
+    // generatePreset(koksGalaxy);
+
     function generateRandomCells(n) {
         setGeneration(0)
         let gen_id = 0
@@ -77,7 +91,7 @@ const Grid = () => {
         return setGrid(arr)
     }
 
-    console.log(grid)
+    // console.log(grid)
 
     // So the issue I'm running into right now is that I'm not taking the edges of the grid into account. It's still looking for cells outside of the bounds of the grid
     // Turns out rows and columns are in reverse order as well
@@ -197,7 +211,7 @@ const Grid = () => {
     useEffect(() => {
         if (isPlaying) {
             setTimeout(() => {
-                setGeneration(generation + 1)
+                // setGeneration(generation + 1)
                 generateGrid2(grid)
             }, 1000)
         }
@@ -209,6 +223,7 @@ const Grid = () => {
         let newArr = []
         // Loop through the array
         // console.log(arr, 'from the inside')
+        setGeneration(generation + 1)
         let nextArr = arr.map((c, ind)=> {
             let actual = checkNeighbors(ind, c.row, c.col, rows)
             // console.log(c.id, ind, actual)
@@ -248,7 +263,7 @@ const Grid = () => {
             newArr.push(updatedCell)
         }
         // setGeneration(generation+1)
-        return setGrid(newArr)
+        setGrid(newArr)
     }
 
 
@@ -260,7 +275,7 @@ const Grid = () => {
         if (isPlaying === false) {
         obj.isAlive = !obj.isAlive
         setGrid([...grid])
-        // console.log(obj)
+        console.log(obj)
         }
     }
 
@@ -280,6 +295,11 @@ const Grid = () => {
         <div className = 'secondary_container'>
                     {/* <h4>Generation: {generation}</h4> */}
             <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
+            <button onClick = {() => generatePreset(koksGalaxy)}>Kok's Galaxy</button>
+            <button onClick = {() => generatePreset(pentadecathlon)}>pentadecathlon</button>
+            <button onClick = {() => generatePreset(simpleGlider)}>Simple Glider</button>
+            <button onClick = {() => generatePreset(shortLine)} >Short Line</button>
+            <button onClick = {() => generatePreset(longLine)}>Long Line</button>
             <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} />
                 <GridContainer className = 'grid_container' 
                 style = 
