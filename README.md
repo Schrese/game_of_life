@@ -2,3 +2,5 @@
 
 Deployed Site: 
 https://game-of-life-dta7rzbbk.vercel.app/ 
+
+Description: 
