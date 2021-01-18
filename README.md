@@ -1,7 +1,7 @@
 # game_of_life
 
 Deployed Site: 
-https://game-of-life-dta7rzbbk.vercel.app/ 
+game-of-life-blond.vercel.app
 
 Description: 
 This is a project that goes through the cell generations aligning with Conways Game of Life. 
