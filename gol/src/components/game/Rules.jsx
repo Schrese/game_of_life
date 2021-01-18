@@ -17,12 +17,8 @@ export default Rules;
 const RulesHead = styled.h4`
     font-size: 3rem;
     font-weight: bold;
-    color: #8ABA91;
-    text-shadow: 2px 2px black;
 `
 
 const RuleNumbers = styled.h6`
     font-size: 1.5rem;
-    color: #8ABA91;
-    text-shadow: 2px 2px black;
 `

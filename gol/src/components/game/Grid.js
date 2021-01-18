@@ -61,14 +61,10 @@ const Grid = () => {
         let newArr = []
         let newCell
         arr.forEach(a => {
-            console.log(a)
             newCell = new EachCell(a.id, a.row, a.col, a.isAlive, a.rows)
             newArr.push(newCell)
-            console.log(newArr)
             return setGrid(newArr) 
     })}
-
-    // generatePreset(koksGalaxy);
 
     function generateRandomCells(n) {
         setGeneration(0)
@@ -84,7 +80,6 @@ const Grid = () => {
                     rand = true
                 }
                 gen_id += 1
-                console.log(rand)
                 newCell = new EachCell(gen_id, i, j, rand, rows)
                 arr.push(newCell)
             }
@@ -92,16 +87,7 @@ const Grid = () => {
         return setGrid(arr)
     }
 
-    // console.log(grid)
-
-    // So the issue I'm running into right now is that I'm not taking the edges of the grid into account. It's still looking for cells outside of the bounds of the grid
-    // Turns out rows and columns are in reverse order as well
-    // Issue I'll run into: looking up the index will be 1 less than the id
-
-    // So I need a function that accepts the individual cell's index, the 'col', and the "row" as parameters so that I know what the end of each row/column is (This will be used/invoked in a loop of some kind that checks the cell). Also takes in the max (which is just the row's)
     function checkNeighbors(cIndex, r, c, max) {
-    // Set up what will need to be subtracted/added to the directions to figure out which cell's id to look at for whether it is alive or dead
-        // I actually don't think I'll need this
 
         // Set up variables for each of the 8 directions, going clockwise from top-left
         let nw
@@ -201,18 +187,9 @@ const Grid = () => {
     return [nw, n, ne, e, se, s, sw, w]
     }    
 
-    // function playTheGame(arr) {
-    //     if (isPlaying) {
-    //         setTimeout(() => {
-    //             generateGrid2(arr)
-    //         }, 3000)
-    //     }
-    // }
-
     useEffect(() => {
         if (isPlaying) {
             setTimeout(() => {
-                // setGeneration(generation + 1)
                 generateGrid2(grid)
             }, 1000)
         }
@@ -220,63 +197,45 @@ const Grid = () => {
 
 
     function generateGrid2(arr) {
-        // Takes in an array 
+
         let newArr = []
+
         // Loop through the array
-        // console.log(arr, 'from the inside')
         setGeneration(generation + 1)
         let nextArr = arr.map((c, ind)=> {
             let actual = checkNeighbors(ind, c.row, c.col, rows)
-            // console.log(c.id, ind, actual)
             let livingCount = 0
             if(arr.length > 0) {
                 actual.forEach(a => {
                     let something = arr[a]
-                    // console.log(c, something) // THIS SHOULD WORK ONCE I FIX THE GRID
                     let another = Object.values(something)
-                    // console.log(another[3])
                     if (another[3] === true) {
-                        // console.log('hello')
                         livingCount += 1
                     }
                 })
-                // console.log(livingCount)
                 if (c.isAlive && (livingCount === 2 || livingCount === 3)) {
-                    // console.log("Stayin' Alive!")
                     return {...c}
                 } else if (c.isAlive && (livingCount < 2 || livingCount > 3)) {
-                    // console.log('dead!')
                     return {...c, isAlive: !c.isAlive}
                 } else if (!c.isAlive && livingCount === 3) {
-                    // console.log('I arise from the ashes')
                     return {...c, isAlive: !c.isAlive}
                 } else {
-                    // console.log("Unafected")
                     return {...c}
                 }
             } 
         })
-        // console.log(nextArr)
         for (let i = 0; i < nextArr.length; i++) {
-            // console.log(nextArr[i].id)
             let updatedCell = new EachCell(nextArr[i].id, nextArr[i].row, nextArr[i].col, nextArr[i].isAlive, rows)
-            // console.log(updatedCell, 'omg maybe??????')
             newArr.push(updatedCell)
         }
-        // setGeneration(generation+1)
+
         setGrid(newArr)
     }
 
-
-    // console.log('next grid', nextGrid)
-
-
-    // console.log('starting grid', grid)
     const lifeToggler = (obj) => {
         if (isPlaying === false) {
         obj.isAlive = !obj.isAlive
         setGrid([...grid])
-        console.log(obj)
         }
     }
 
@@ -292,18 +251,10 @@ const Grid = () => {
     const changeRows = e => {
         setRows(Number(e.target.value))
     }
-    return(
+    return (
         <div className = 'secondary_container'>
-                    {/* <h4>Generation: {generation}</h4> */}
-            {/* <button onClick = {() => generateGrid2(grid)}>Next Gen</button>
-            <button onClick = {() => generatePreset(koksGalaxy)}>Kok's Galaxy</button>
-            <button onClick = {() => generatePreset(pentadecathlon)}>pentadecathlon</button>
-            <button onClick = {() => generatePreset(simpleGlider)}>Simple Glider</button>
-            <button onClick = {() => generatePreset(shortLine)} >Short Line</button>
-            <button onClick = {() => generatePreset(longLine)}>Long Line</button> */}
             <div>
-
-            <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
+                <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
             </div>
             <div>
 
