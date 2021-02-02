@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import Cell from './Cell.js';
 import Inputs from './Inputs.js';
@@ -251,13 +252,13 @@ const Grid = () => {
         setRows(Number(e.target.value))
     }
     return (
-        <div>
+        <div className='grid-container'>
             <div>
                 <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
             </div>
-            <div>
+            <div className='grid'>
 
-                <div
+                <div className='inner-grid'
                 style = 
                 {{gridTemplateColumns: 
                     rows === 25 ? `repeat(${rows}, ${30}px)` : 
@@ -274,10 +275,10 @@ const Grid = () => {
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler} cellShape = {cellShape} rows = {rows} />
                         )) : null}
                 </div>
-                </div>
-                <div>
+            </div>
+            <div>
                 <Rules />
-                </div>
+            </div>
         </div>
     )
 }

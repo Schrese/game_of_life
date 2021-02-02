@@ -2,14 +2,14 @@ import React from 'react';
 
 const Cell = ({ ind_cell, index, setGrid, lifeToggler, cellShape, rows }) => {
     return(
-        <div onClick = {() => lifeToggler(ind_cell)} 
+        <div className='cell-games' onClick = {() => lifeToggler(ind_cell)} 
         style={{
             background: ind_cell.isAlive === true ? 'blue' : 'pink', 
             borderRadius: cellShape ? '0px' : '50px', 
-            height: rows === 25 ? '1.5rem' : 
-            rows === 30 ? '1.4rem' : '1rem',
-            width: rows === 25 ? '1.5rem' : 
-            rows === 30 ? '1.4rem' : '1rem'
+            // height: rows === 25 ? '1.5rem' : 
+            // rows === 30 ? '1.4rem' : '1rem',
+            // width: rows === 25 ? '1.5rem' : 
+            // rows === 30 ? '1.4rem' : '1rem'
             }} >
         </div>
     )
