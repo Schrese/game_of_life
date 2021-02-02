@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
 import Cell from './Cell.js';
 import Inputs from './Inputs.js';
@@ -252,13 +251,13 @@ const Grid = () => {
         setRows(Number(e.target.value))
     }
     return (
-        <div className = 'secondary_container'>
+        <div>
             <div>
                 <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
             </div>
             <div>
 
-                <GridContainer className = 'grid_container' 
+                <div
                 style = 
                 {{gridTemplateColumns: 
                     rows === 25 ? `repeat(${rows}, ${30}px)` : 
@@ -274,7 +273,7 @@ const Grid = () => {
                     {grid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler} cellShape = {cellShape} rows = {rows} />
                         )) : null}
-                </GridContainer>
+                </div>
                 </div>
                 <div>
                 <Rules />
@@ -285,12 +284,11 @@ const Grid = () => {
 
 export default Grid;
 
-const GridContainer = styled.div`
-    display: grid;
-    justify-content: center;
-    padding: 10px;
-    height: 80%;
-    width: 100%;
-    // background: #5F4B8BFF;
-`
+// const GridContainer = styled.div`
+//     display: grid;
+//     justify-content: center;
+//     padding: 10px;
+//     height: 80%;
+//     width: 100%;
+// `
 
