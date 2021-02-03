@@ -1,20 +1,25 @@
 .grid-container {
     display: flex;
     flex-flow: column wrap;
-    width: 80%;
+    // width: 98%;
     margin: 0 auto;
-    background: teal;
-}
+    background: lightgrey;
 
-.grid {
-    // display: grid;
-    justify-content: center;
-    background: purple;
-    padding: 10px;
-    height: 80%;
+    .grid {
+        // display: grid;
+        justify-content: center;
+        background: black;
+        padding: 10px;
+        // height: 80%;
+        margin: 0 auto;
     
+        .inner-grid {
+            display: grid;
+            grid-template-columns: repeat(25, 1fr);
+}
+}
 }
 
-.inner-grid {
-    display: grid;
-}
+
+
+

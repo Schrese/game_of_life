@@ -253,24 +253,25 @@ const Grid = () => {
     }
     return (
         <div className='grid-container'>
-            <div>
+            <div className='inputs'>
                 <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
             </div>
             <div className='grid'>
 
                 <div className='inner-grid'
-                style = 
-                {{gridTemplateColumns: 
-                    rows === 25 ? `repeat(${rows}, ${30}px)` : 
-                    rows === 30 ? `repeat(${rows}, ${27}px)` : 
-                    rows === 40 ? `repeat(${rows}, ${23}px)` : 
-                    `repeat(${rows}, ${21}px)`, 
-                    gridTemplateRows: 
-                    rows === 25 ? `repeat(${rows}, ${30}px)` : 
-                    rows === 30 ? `repeat(${rows}, ${27}px)` : 
-                    rows === 40 ? `repeat(${rows}, ${23}px)` : 
-                    `repeat(${rows}, ${21}px)`
-                }} >
+                // style = 
+                // {{gridTemplateColumns: 
+                //     rows === 25 ? `repeat(${rows}, ${30}px)` : 
+                //     rows === 30 ? `repeat(${rows}, ${27}px)` : 
+                //     rows === 40 ? `repeat(${rows}, ${23}px)` : 
+                //     `repeat(${rows}, ${21}px)`, 
+                //     gridTemplateRows: 
+                //     rows === 25 ? `repeat(${rows}, ${30}px)` : 
+                //     rows === 30 ? `repeat(${rows}, ${27}px)` : 
+                //     rows === 40 ? `repeat(${rows}, ${23}px)` : 
+                //     `repeat(${rows}, ${21}px)`
+                // }} 
+                >
                     {grid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler} cellShape = {cellShape} rows = {rows} />
                         )) : null}
