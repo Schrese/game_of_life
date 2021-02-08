@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
 import Cell from './Cell.js';
-import Inputs from './Inputs.js';
+import Pregens from './Pregens.js';
 import Rules from './Rules.jsx';
 import { koksGalaxy, pentadecathlon, simpleGlider, shortLine, longLine } from './helpers.js';
+import Controls from './Controls.js';
 
 // Cell Class
 // has properties: id, row, col, alive, 
@@ -253,33 +253,24 @@ const Grid = () => {
     }
     return (
         <div className='grid-container'>
-            <div className='inputs'>
-                <Inputs playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} changeRows = {changeRows} setRows = {setRows} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} generateGrid2 = {generateGrid2} />
-            </div>
+
+
             <div className='grid'>
 
-                <div className='inner-grid'
-                // style = 
-                // {{gridTemplateColumns: 
-                //     rows === 25 ? `repeat(${rows}, ${30}px)` : 
-                //     rows === 30 ? `repeat(${rows}, ${27}px)` : 
-                //     rows === 40 ? `repeat(${rows}, ${23}px)` : 
-                //     `repeat(${rows}, ${21}px)`, 
-                //     gridTemplateRows: 
-                //     rows === 25 ? `repeat(${rows}, ${30}px)` : 
-                //     rows === 30 ? `repeat(${rows}, ${27}px)` : 
-                //     rows === 40 ? `repeat(${rows}, ${23}px)` : 
-                //     `repeat(${rows}, ${21}px)`
-                // }} 
-                >
+                <div className='inner-grid'>
                     {grid ? grid.map((g, i) => (
                         <Cell key = {g.id} ind_cell = {g} index = {i} lifeToggler = {lifeToggler} cellShape = {cellShape} rows = {rows} />
                         )) : null}
                 </div>
             </div>
-            <div>
-                <Rules />
-            </div>
+
+            <Controls playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} generateGrid2 = {generateGrid2} />
+            
+            <Pregens changeRows = {changeRows} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} />
+
+            {/* <div> */}
+                {/* <Rules /> */}
+            {/* </div> */}
         </div>
     )
 }

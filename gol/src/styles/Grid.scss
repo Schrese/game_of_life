@@ -1,16 +1,12 @@
 .grid-container {
     display: flex;
     flex-flow: column wrap;
-    // width: 98%;
-    margin: 0 auto;
-    background: lightgrey;
+    padding: 10% 0;
 
     .grid {
-        // display: grid;
         justify-content: center;
-        background: black;
+        background: $black;
         padding: 10px;
-        // height: 80%;
         margin: 0 auto;
     
         .inner-grid {
