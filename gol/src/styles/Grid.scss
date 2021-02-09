@@ -1,7 +1,6 @@
 .grid-container {
     display: flex;
     flex-flow: column wrap;
-    padding: 10% 0;
 
     .grid {
         justify-content: center;
@@ -12,8 +11,8 @@
         .inner-grid {
             display: grid;
             grid-template-columns: repeat(25, 1fr);
-}
-}
+        }
+    }
 }
 
 

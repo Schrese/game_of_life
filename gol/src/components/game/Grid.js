@@ -266,7 +266,9 @@ const Grid = () => {
 
             <Controls playToggle = {playToggle} clearer = {generateCells} rows = {rows} randomCells = {generateRandomCells} generation = {generation} cellShapeToggle = {cellShapeToggle} cellShape = {cellShape} grid = {grid} generateGrid2 = {generateGrid2} />
             
-            <Pregens changeRows = {changeRows} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset} />
+            <Pregens changeRows = {changeRows} koksGalaxy = {koksGalaxy} pentadecathlon = {pentadecathlon} simpleGlider = {simpleGlider} shortLine = {shortLine} longLine = {longLine} generatePreset = {generatePreset}  randomCells = {generateRandomCells} rows = {rows} />
+
+
 
             {/* <div> */}
                 {/* <Rules /> */}

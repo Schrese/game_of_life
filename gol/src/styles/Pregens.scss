@@ -1,10 +1,5 @@
 .presets {
-    // background: $grey;
-    border: 1px solid grey;
-
-    button {
-        margin: 1%;
-        border: 1px solid $black;
-        border-radius: 10px;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
